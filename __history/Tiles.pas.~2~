@@ -1,0 +1,21 @@
+unit Tiles;
+
+interface
+
+uses
+  BaseClasses;
+
+type
+  TTile = class(TGameObject)
+    Class var
+      Sprite :char
+  end;
+
+  TWall  = class(TTile)
+  TSand  = class(TTile);
+  TExit  = class(TTile);
+
+
+implementation
+
+end.

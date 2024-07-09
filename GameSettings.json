@@ -1,0 +1,20 @@
+{
+    "CharacterHealth": 200,
+    "BombSettings": {
+        "MaxCount": 2,
+        "Timer": 2,
+        "FireRange": 3
+    },
+
+    "Theme": {
+        "Wall":  "#",
+        "Empty": " ",
+        "Sand":  "-",
+        "Hero":  "C",
+        "Bomb":  "@",
+        "Fire":  "X",
+        "Exit":  "%",
+        "Enemy": "E"
+    }
+}
+

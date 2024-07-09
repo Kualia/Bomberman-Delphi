@@ -1,0 +1,17 @@
+unit Tiles;
+
+interface
+
+type
+  TTile = class(TGameObject)
+    Breakable :Boolean;
+  end;
+
+  TWall  = class(TTile);
+  TSand  = class(TTile);
+  TExit  = class(TTile);
+
+
+implementation
+
+end.

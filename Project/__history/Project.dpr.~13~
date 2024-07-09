@@ -1,0 +1,18 @@
+program Project;
+
+uses
+  Vcl.Forms,
+  Main in '..\Main.pas' {MainForm},
+  BaseClasses in '..\BaseClasses.pas',
+  Game in '..\Game.pas',
+  Helpers in '..\Helpers.pas',
+  Unit1 in '..\Unit1.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TMainForm, MainForm);
+  Application.Run;
+end.

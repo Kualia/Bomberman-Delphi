@@ -1,0 +1,50 @@
+unit Helpers;
+
+interface
+ uses
+  System.SysUtils, System.Classes;
+
+
+function ReadFromFile(const FileName: string): String;
+
+implementation
+
+function ReadFromFile(const FileName: string): String;
+var
+  FileStream      :TFileStream;
+  StringStream    :TStringStream;
+begin
+  FileStream    := TFileStream.Create(FileName, fmOpenRead);
+  StringStream  := TStringStream.Create;
+  try
+    StringStream.CopyFrom(FileStream, FileStream.Size);
+    StringStream.Position := 0;
+    Result := StringStream.DataString;
+  finally
+    FileStream.Free;
+    StringStream.Free;
+  end;
+end;
+
+function StringListFromFile(const FileName: string): TStringList;
+var
+  StringList    :TStringList;
+  FileStream    :TFileStream;
+  x,y           :Integer;
+begin
+  StringList    :=TStringlist.Create;
+  StringList.LoadFromStream(FileStream);
+end;
+
+procedure StrToCharArray(const str: string; var arr: array of char);
+var
+  c: char;
+begin
+//  for c in str do
+//    arr
+//
+
+end;
+
+
+end.
