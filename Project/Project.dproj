@@ -101,12 +101,16 @@
         <DCCReference Include="..\Main.pas">
             <Form>MainForm</Form>
         </DCCReference>
-        <DCCReference Include="..\BaseClasses.pas"/>
+        <DCCReference Include="..\GameObject.pas"/>
         <DCCReference Include="..\Game.pas"/>
         <DCCReference Include="..\Helpers.pas"/>
         <DCCReference Include="..\Screen.pas"/>
         <DCCReference Include="..\Character.pas"/>
         <DCCReference Include="..\Tiles.pas"/>
+        <DCCReference Include="..\Dynamic2DArr.pas"/>
+        <DCCReference Include="..\Enums.pas"/>
+        <DCCReference Include="..\Bomb.pas"/>
+        <DCCReference Include="..\ParticleEffects.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

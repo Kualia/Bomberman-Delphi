@@ -12,7 +12,7 @@ object MainForm: TMainForm
   Font.Style = []
   Position = poDesigned
   OnCreate = FormCreate
-  OnKeyDown = ScreenKeyDown
+  OnKeyDown = KeyDown
   TextHeight = 15
   object Screen: TMemo
     Left = 104
@@ -22,19 +22,12 @@ object MainForm: TMainForm
     Enabled = False
     Font.Charset = TURKISH_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
+    Font.Height = -16
     Font.Name = 'Cascadia Mono'
     Font.Style = []
-    Lines.Strings = (
-      '##############################'
-      '#  --  --- --- --- ---      ##'
-      '#   #                #       #'
-      '#  ##                --------#'
-      '#   #                #   --  #'
-      '#   ####   ###---#  ###  --- #')
     ParentFont = False
     ReadOnly = True
     TabOrder = 0
-    OnKeyDown = ScreenKeyDown
+    OnKeyDown = KeyDown
   end
 end

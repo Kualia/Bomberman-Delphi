@@ -1,0 +1,13 @@
+unit Enumerators;
+
+interface
+
+type
+  TDirection = (UP, DOWN, RIGHT, LEFT);
+
+  TKeys = (NOKEY, UPKEY, DOWNKEY, RIGHTKEY, LEFTKEY);
+
+
+implementation
+
+end.

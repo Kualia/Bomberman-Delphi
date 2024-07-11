@@ -1,0 +1,16 @@
+unit ObjectPool;
+
+interface
+
+uses
+  Dynamic2DArr, GameObject;
+
+implementation
+
+type
+
+  TObjectPool = class(Dynamic2DArr<GameObject>)
+
+  end;
+
+end.

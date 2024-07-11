@@ -1,0 +1,16 @@
+unit ObjectPool;
+
+interface
+
+uses
+  Dynamic2DArr, GameObject;
+
+implementation
+
+type
+
+  TObjectPool = class(TBuffer<TGameObject>)
+
+  end;
+
+end.
