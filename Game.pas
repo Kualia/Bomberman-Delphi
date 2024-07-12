@@ -29,7 +29,7 @@ type
     procedure LoadGame;
     procedure LoadObject(x, y :Integer);
 
-    procedure SetKeyState(Key: word);
+    procedure SetKeyState(Key: TKeys);
     procedure Update(screen: Tstrings; Key: word); overload;
     procedure UpdateUI(screen :TStrings);
     procedure UpdateLogic();
@@ -116,21 +116,14 @@ begin
     end;
 end;
 
-procedure TGame.SetKeyState(Key: word);
+procedure TGame.SetKeyState(Key: TKeys);
 begin
- case Key of
-    87: KeyState  := TKeys.UPKEY;
-    83: KeyState  := TKeys.DOWNKEY;
-    65: KeyState  := TKeys.LEFTKEY;
-    68: KeyState  := TKeys.RIGHTKEY;
-    32: KeyState  := TKeys.BOMBKEY;
-    else KeyState := TKeys.NOKEY;
-  end;
+  KeyState := Key;
 end;
 
 procedure TGame.Update(screen: Tstrings; Key: word);
 begin
-  SetKeyState(Key);
+  SetKeyState(TKeysGetKey(key));
   UpdateLogic();
   UpdateUI(screen);
 end;
@@ -146,17 +139,19 @@ begin
            ScreenBuffer[y, x] := GetSpriteOf(GameObjects[y, x]);
 
   Particles.DrawParticles(ScreenBuffer);
+
+  //draw
   ScreenBuffer.UpdateScreen(Screen);
+
+  //Log
+  Screen.Add('Moves: ' + Character.Health.ToString
+  +'/'+GameSettings.GetValue<string>('CharacterHealth'));
 end;
 
 procedure TGame.UpdateLogic();
-var
-  iObject   :TGameObject;
-
-  begin
+begin
   if KeyState = TKeys.NOKEY then Exit;
   Character.Update(KeyState);
-
 end;
 
 procedure TGame.LoadObject(x, y :Integer);
