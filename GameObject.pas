@@ -2,7 +2,7 @@ unit GameObject;
 interface
 
 uses
-  Screen, Enums, Vcl.Dialogs, System.SysUtils;
+  Screen, Enums, Vcl.Dialogs, ParticleEffects, System.SysUtils;
 
 type
   TGameObject = class(TObject)
@@ -17,6 +17,7 @@ type
       class var  Sprite       :Char;
       class var  Screen       :TScreenBuffer;
       class var  GameObjects  :TBuffer<TGameObject>;
+      class var  Particles    :TParticleEffectMotor;
   end;
 
 implementation

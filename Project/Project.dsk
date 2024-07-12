@@ -11,36 +11,39 @@ File_8=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\
 File_9=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Controls.pas',0,1,13506,1,13520,0,0,,
 
 [Modules]
-Module0=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas
-Module1=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ParticleEffects.pas
-Module2=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Screen.pas
-Module3=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Character.pas
+Module0=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas
+Module1=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Character.pas
+Module2=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ParticleEffects.pas
+Module3=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas
 Module4=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Main.pas
 Module5=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\GameObject.pas
-Module6=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Helpers.pas
-Module7=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Enums.pas
-Module8=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Dynamic2DArr.pas
-Module9=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas
+Module6=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Screen.pas
+Module7=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Helpers.pas
+Module8=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Enums.pas
+Module9=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Dynamic2DArr.pas
 Module10=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Tiles.pas
 Count=11
 EditWindowCount=1
 
-[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas]
+[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas]
+ModuleType=TSourceModule
+
+[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Character.pas]
 ModuleType=TSourceModule
 
 [C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ParticleEffects.pas]
 ModuleType=TSourceModule
 
-[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Screen.pas]
-ModuleType=TSourceModule
-
-[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Character.pas]
+[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas]
 ModuleType=TSourceModule
 
 [C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Main.pas]
 ModuleType=TSourceModule
 
 [C:\Users\deniz\OneDrive\Masaüstü\Bomberman\GameObject.pas]
+ModuleType=TSourceModule
+
+[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Screen.pas]
 ModuleType=TSourceModule
 
 [C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Helpers.pas]
@@ -52,15 +55,12 @@ ModuleType=TSourceModule
 [C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Dynamic2DArr.pas]
 ModuleType=TSourceModule
 
-[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas]
-ModuleType=TSourceModule
-
 [C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Tiles.pas]
 ModuleType=TSourceModule
 
 [EditWindow0]
 ViewCount=11
-CurrentEditView=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas
+CurrentEditView=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas
 View0=0
 View1=1
 View2=2
@@ -104,9 +104,9 @@ BottomMiddelPanelData=0000080001020200000009000000446F636B5369746530100000004772
 [View0]
 CustomEditViewType=TEditView
 Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Main.pas
-CursorX=8
-CursorY=6
-TopLine=31
+CursorX=15
+CursorY=41
+TopLine=25
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -126,9 +126,9 @@ EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Enums.pas
 [View2]
 CustomEditViewType=TEditView
 Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas
-CursorX=1
-CursorY=13
-TopLine=16
+CursorX=16
+CursorY=159
+TopLine=198
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -137,9 +137,9 @@ EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas
 [View3]
 CustomEditViewType=TEditView
 Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ParticleEffects.pas
-CursorX=37
-CursorY=10
-TopLine=1
+CursorX=1
+CursorY=53
+TopLine=45
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -148,9 +148,9 @@ EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ParticleEffects.pas
 [View4]
 CustomEditViewType=TEditView
 Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas
-CursorX=22
-CursorY=109
-TopLine=100
+CursorX=47
+CursorY=39
+TopLine=23
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -159,9 +159,9 @@ EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas
 [View5]
 CustomEditViewType=TEditView
 Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Character.pas
-CursorX=49
-CursorY=59
-TopLine=37
+CursorX=5
+CursorY=140
+TopLine=124
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -203,8 +203,8 @@ EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Screen.pas
 [View9]
 CustomEditViewType=TEditView
 Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\GameObject.pas
-CursorX=5
-CursorY=53
+CursorX=53
+CursorY=20
 TopLine=1
 LeftCol=1
 Elisions=
@@ -247,7 +247,8 @@ Dockable=1
 StayOnTop=0
 
 [Breakpoints]
-Count=0
+Count=1
+Breakpoint0='C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas',23,'',0,1,'',1,0,0,'',1,'','','',0,''
 
 [EmbarcaderoWin32Debugger_AddressBreakpoints]
 Count=0

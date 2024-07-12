@@ -81,8 +81,10 @@ begin
 
   if Assigned(ScreenBuffer) then ScreenBuffer.Free;
   if Assigned(GameObjects)  then GameObjects.Free;
+  if Assigned(Particles)    then Particles.Free;
   ScreenBuffer := TScreenBuffer.Create(Ysize, XSize);
   GameObjects  := TBuffer<TGameObject>.Create(YSize, XSize);
+  Particles    := TParticleEffectMotor.Create;
 
   //settings and theme
   if not Assigned(GameSettings) then
@@ -102,6 +104,7 @@ begin
     //static settings
     TGameObject.Screen      := ScreenBuffer;
     TGameObject.GameObjects := GameObjects;
+    TGameObject.Particles   := Particles;
   end;
 
   // Load Objects
@@ -136,16 +139,15 @@ procedure TGame.UpdateUI(Screen :TStrings);
 var
   x, y    :Integer;
   obj     :TGameObject;
-  sp      :Char;
 begin
 
   for y := 0 to ScreenBuffer.RowCount - 1 do
       for x := 0 to ScreenBuffer.ColumnCount - 1 do
            ScreenBuffer[y, x] := GetSpriteOf(GameObjects[y, x]);
 
+  Particles.DrawParticles(ScreenBuffer);
   ScreenBuffer.UpdateScreen(Screen);
 end;
-
 
 procedure TGame.UpdateLogic();
 var

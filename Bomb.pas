@@ -7,9 +7,11 @@ uses
 
 type
   TBomb = class(TGameObject)
-    Health :Integer;
+    Timer  :Integer;
     Damage :Integer;
-    Range   :Integer;
+    Range  :Integer;
+    Drill  :Integer;
+    State  :Integer;
     public
       constructor Create(x, y :Integer);
 //      class var BombCount  :Integer;
@@ -30,41 +32,45 @@ implementation
 constructor TBomb.Create(x, y :Integer);
 begin
 //  if BombCount < MaxBombs then
-    ShowMessage('Tbomb create');
-    Screen[PosY, PosX] := BombSprite;
-    Health := 3;
+
+    Timer := 3+1;
+    Range := 2;
+    State := 1;
     inherited Create(x, y);
 
 end;
 
 procedure   TBomb.Update();
 begin
-  Screen[PosY, PosX] := BombSprite;
-  ShowMessage('Tbomb update');
-  Damage := Health - 1;
-  if Health <= 0 then explode();
+  if State <= 0 then exit;
+
+  Particles.Add(PosX, PosY, BombSprite);
+//  ShowMessage('Tbomb update');
+  Timer := Timer - 1;
+  if Timer <= 0 then explode();
 end;
 
 procedure  TBomb.Explode();
 var
   Distance, I :Integer;
 begin
-     ShowMessage('Tbomb explode');
+//     ShowMessage('Tbomb explode');
   Hit(PosX, PosY);
   for I := 1 to RayCast(TDirection.UP,    Range) do Hit(PosX, PosY - I);
   for I := 1 to RayCast(TDirection.DOWN,  Range) do Hit(PosX, PosY + I);
   for I := 1 to RayCast(TDirection.LEFT,  Range) do Hit(PosX - I, PosY);
   for I := 1 to RayCast(TDirection.RIGHT, Range) do Hit(PosX + I, PosY);
+
+  state := 0;
 end;
 
 
 procedure TBomb.Hit(x, y :Integer);
 var
-  I :integer;
+  I   :integer;
   obj : TGameObject;
 begin
-  Screen[PosY, PosX] := ExplosionSprite;
-
+  Particles.Add(x, y, ExplosionSprite);
   // sadece kuma vuruyoz
   if GameObjects[PosY, PosX] is TSand then
   begin
@@ -115,8 +121,5 @@ begin
   end;
   Result := True;
 end;
-
-
-
 
 end.
