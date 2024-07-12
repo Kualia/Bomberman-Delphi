@@ -12,7 +12,8 @@ uses
   Dynamic2DArr in '..\Dynamic2DArr.pas',
   Enums in '..\Enums.pas',
   Bomb in '..\Bomb.pas',
-  ParticleEffects in '..\ParticleEffects.pas';
+  ParticleEffects in '..\ParticleEffects.pas',
+  Bombs in '..\Bombs.pas';
 
 {$R *.res}
 

@@ -22,13 +22,15 @@ type
 
   TCharacter = class(TAgent)
   public
-    bomb  :TBomb;
     constructor Create(PosX, PosY, Health :Integer; Speed :Integer = 1);
     procedure Update(KeyState: TKeys);
+    procedure DropBomb();
 //    procedure ThrowBomb();
   end;
 
 implementation
+uses
+ Game;
 
 { TAgent }
 constructor TAgent.Create(PosX, PosY, Health, Speed :Integer);
@@ -133,11 +135,13 @@ begin
     TKeys.DOWNKEY   :Move(TDirection.DOWN);
     TKeys.LEFTKEY   :Move(TDirection.LEFT);
     TKeys.RIGHTKEY  :Move(TDirection.RIGHT);
-    TKeys.BOMBKEY	  :Bomb := TBomb.Create(PosX, PosY);
+    TKeys.BOMBKEY	  :DropBomb();
   end;
+end;
 
-  if assigned(bomb) then Bomb.Update;
-
+procedure TCharacter.DropBomb();
+begin
+  TGame.GetInstance.Bombs.Add(PosX, PosY);
 end;
 
 end.

@@ -28,6 +28,7 @@ uses
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
   Game  := TGame.GetInstance;
+  Game.LoadGame;
   Game.UpdateUI(Screen.Lines);
 end;
 

@@ -1,65 +1,56 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\source\rtl\common\System.JSON.pas',0,1,1694,1,1708,0,0,,
-File_1=TSourceModule,'C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ObjectPool.pas',0,1,1,26,6,0,0,,
-File_2=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\source\rtl\common\System.TypInfo.pas',0,1,1120,1,1134,0,0,,
-File_3=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\SOURCE\RTL\SYS\System.pas',0,1,36878,1,36892,0,0,,
-File_4=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\source\rtl\common\System.Generics.Collections.pas',0,1,7129,1,7143,0,0,,
-File_5=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Dialogs.pas',0,1,1,5,10,0,0,,
-File_6=TSourceModule,'C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Unit1.pas',0,1,16,21,41,0,0,,
-File_7=TSourceModule,'C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Project\Unit1.pas',0,1,1,1,5,0,0,,
-File_8=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Forms.pas',0,1,4030,1,4044,0,0,{{1990,4}
-File_9=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Controls.pas',0,1,13506,1,13520,0,0,,
+File_0=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\source\rtl\common\System.JSON.pas',0,1,1695,1,1708,0,0,,
+File_1=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\SOURCE\RTL\SYS\System.SysUtils.pas',0,1,9227,1,9240,0,0,,
+File_2=TSourceModule,'C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Dynamic2DArr.pas',0,1,59,1,1,0,0,,
+File_3=TSourceModule,'C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Screen.pas',0,1,1,28,66,0,0,,
+File_4=TSourceModule,'C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Tiles.pas',0,1,1,29,9,0,0,,
+File_5=TSourceModule,'C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Helpers.pas',0,1,1,1,49,0,0,,
+File_6=TSourceModule,'C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ObjectPool.pas',0,1,1,26,6,0,0,,
+File_7=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\source\rtl\common\System.TypInfo.pas',0,1,1120,1,1134,0,0,,
+File_8=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\SOURCE\RTL\SYS\System.pas',0,1,36878,1,36892,0,0,,
+File_9=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\source\rtl\common\System.Generics.Collections.pas',0,1,7129,1,7143,0,0,,
+File_10=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Dialogs.pas',0,1,1,5,10,0,0,,
+File_11=TSourceModule,'C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Unit1.pas',0,1,16,21,41,0,0,,
+File_12=TSourceModule,'C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Project\Unit1.pas',0,1,1,1,5,0,0,,
 
 [Modules]
 Module0=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas
-Module1=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Enums.pas
-Module2=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Main.pas
-Module3=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas
-Module4=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Character.pas
-Module5=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Helpers.pas
-Module6=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Tiles.pas
-Module7=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ParticleEffects.pas
-Module8=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\GameObject.pas
-Module9=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Screen.pas
-Module10=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Dynamic2DArr.pas
-Count=11
+Module1=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bombs.pas
+Module2=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Character.pas
+Module3=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Main.pas
+Module4=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\GameObject.pas
+Module5=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas
+Module6=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ParticleEffects.pas
+Module7=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Enums.pas
+Count=8
 EditWindowCount=1
 
 [C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas]
 ModuleType=TSourceModule
 
-[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Enums.pas]
-ModuleType=TSourceModule
-
-[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Main.pas]
-ModuleType=TSourceModule
-
-[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas]
+[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bombs.pas]
 ModuleType=TSourceModule
 
 [C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Character.pas]
 ModuleType=TSourceModule
 
-[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Helpers.pas]
-ModuleType=TSourceModule
-
-[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Tiles.pas]
-ModuleType=TSourceModule
-
-[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ParticleEffects.pas]
+[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Main.pas]
 ModuleType=TSourceModule
 
 [C:\Users\deniz\OneDrive\Masaüstü\Bomberman\GameObject.pas]
 ModuleType=TSourceModule
 
-[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Screen.pas]
+[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas]
 ModuleType=TSourceModule
 
-[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Dynamic2DArr.pas]
+[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ParticleEffects.pas]
+ModuleType=TSourceModule
+
+[C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Enums.pas]
 ModuleType=TSourceModule
 
 [EditWindow0]
-ViewCount=11
+ViewCount=8
 CurrentEditView=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas
 View0=0
 View1=1
@@ -69,9 +60,6 @@ View4=4
 View5=5
 View6=6
 View7=7
-View8=8
-View9=9
-View10=10
 PercentageSizes=1
 Create=1
 Visible=1
@@ -88,9 +76,9 @@ ClientHeight=9000
 DockedToMainForm=1
 BorlandEditorCodeExplorer=BorlandEditorCodeExplorer@EditWindow0
 TopPanelSize=0
-LeftPanelSize=1896
+LeftPanelSize=1901
 LeftPanelClients=PropertyInspector,DockSite3
-LeftPanelData=00000800010100000000620F00000000000001680700000000000001000000005C0E000009000000446F636B53697465330100000000581B00001100000050726F7065727479496E73706563746F72FFFFFFFF
+LeftPanelData=00000800010100000000620F000000000000016D0700000000000001000000005C0E000009000000446F636B53697465330100000000581B00001100000050726F7065727479496E73706563746F72FFFFFFFF
 RightPanelSize=2000
 RightPanelClients=DockSite2,DockSite4
 RightPanelData=00000800010100000000620F00000000000001D00700000000000001000000004412000009000000446F636B53697465320100000000581B000009000000446F636B5369746534FFFFFFFF
@@ -104,15 +92,26 @@ BottomMiddelPanelData=0000080001020200000009000000446F636B5369746530100000004772
 [View0]
 CustomEditViewType=TEditView
 Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Main.pas
-CursorX=34
-CursorY=36
-TopLine=19
+CursorX=17
+CursorY=31
+TopLine=10
 LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Main.pas
 
 [View1]
+CustomEditViewType=TEditView
+Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas
+CursorX=26
+CursorY=68
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas
+
+[View2]
 CustomEditViewType=TEditView
 Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Enums.pas
 CursorX=46
@@ -123,87 +122,43 @@ Elisions=
 Bookmarks=
 EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Enums.pas
 
-[View2]
-CustomEditViewType=TEditView
-Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas
-CursorX=20
-CursorY=147
-TopLine=130
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Game.pas
-
 [View3]
 CustomEditViewType=TEditView
-Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ParticleEffects.pas
-CursorX=1
-CursorY=53
-TopLine=45
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ParticleEffects.pas
-
-[View4]
-CustomEditViewType=TEditView
-Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas
-CursorX=42
-CursorY=88
-TopLine=74
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas
-
-[View5]
-CustomEditViewType=TEditView
 Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Character.pas
-CursorX=22
-CursorY=136
-TopLine=34
+CursorX=43
+CursorY=144
+TopLine=40
 LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Character.pas
 
+[View4]
+CustomEditViewType=TEditView
+Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ParticleEffects.pas
+CursorX=11
+CursorY=6
+TopLine=4
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\ParticleEffects.pas
+
+[View5]
+CustomEditViewType=TEditView
+Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bombs.pas
+CursorX=81
+CursorY=98
+TopLine=94
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bombs.pas
+
 [View6]
 CustomEditViewType=TEditView
-Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Helpers.pas
-CursorX=1
-CursorY=49
-TopLine=1
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Helpers.pas
-
-[View7]
-CustomEditViewType=TEditView
-Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Tiles.pas
-CursorX=29
-CursorY=9
-TopLine=1
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Tiles.pas
-
-[View8]
-CustomEditViewType=TEditView
-Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Screen.pas
-CursorX=28
-CursorY=66
-TopLine=1
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Screen.pas
-
-[View9]
-CustomEditViewType=TEditView
 Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\GameObject.pas
-CursorX=53
+CursorX=1
 CursorY=20
 TopLine=1
 LeftCol=1
@@ -211,16 +166,16 @@ Elisions=
 Bookmarks=
 EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\GameObject.pas
 
-[View10]
+[View7]
 CustomEditViewType=TEditView
-Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Dynamic2DArr.pas
+Module=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas
 CursorX=1
-CursorY=1
-TopLine=59
+CursorY=44
+TopLine=30
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Dynamic2DArr.pas
+EditViewName=C:\Users\deniz\OneDrive\Masaüstü\Bomberman\Bomb.pas
 
 [Watches]
 Count=0
@@ -340,14 +295,14 @@ Docked=1
 State=0
 Left=0
 Top=425
-Width=1896
+Width=1901
 Height=3183
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1896
+ClientWidth=1901
 ClientHeight=3183
 TBDockHeight=9010
-LRDockWidth=1896
+LRDockWidth=1901
 Dockable=1
 StayOnTop=0
 SplitPos=111
@@ -667,11 +622,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=1896
+Width=1901
 Height=3471
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1896
+ClientWidth=1901
 ClientHeight=3471
 TBDockHeight=3683
 LRDockWidth=1896
@@ -801,14 +756,14 @@ Docked=1
 State=0
 Left=0
 Top=28
-Width=1896
+Width=1901
 Height=3471
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1896
+ClientWidth=1901
 ClientHeight=3471
 TBDockHeight=9010
-LRDockWidth=1896
+LRDockWidth=1901
 Dockable=1
 StayOnTop=0
 TabPosition=1

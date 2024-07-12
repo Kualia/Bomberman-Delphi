@@ -111,6 +111,7 @@
         <DCCReference Include="..\Enums.pas"/>
         <DCCReference Include="..\Bomb.pas"/>
         <DCCReference Include="..\ParticleEffects.pas"/>
+        <DCCReference Include="..\Bombs.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

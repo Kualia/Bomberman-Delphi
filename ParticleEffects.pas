@@ -18,9 +18,9 @@ type
     public
       constructor Create;
       destructor Destroy;
-      procedure Add(Particle: TParticle); overload;
-      procedure Add(x,y :Integer; Sprite :Char); overload;
-      procedure DrawParticles(ScreenBuffer :TScreenBuffer);
+      procedure  Add(Particle: TParticle); overload;
+      procedure  Add(x,y :Integer; Sprite :Char); overload;
+      procedure  DrawParticles(ScreenBuffer :TScreenBuffer);
   end;
 
 

@@ -3,7 +3,7 @@ unit Game;
 interface
 
 uses
-  Screen, Character, Tiles, GameObject, Helpers, Enums, Bomb, ParticleEffects,
+  Screen, Character, Tiles, GameObject, Helpers, Enums, Bomb, Bombs, ParticleEffects,
   TypInfo, System.Variants, System.Rtti,
   System.JSON, System.Generics.Collections, System.Classes, System.SysUtils,
   Vcl.Dialogs;
@@ -20,6 +20,7 @@ type
 
     ScreenBuffer    :TScreenBuffer;
     GameObjects     :TBuffer<TGameObject>;
+    Bombs           :TBombs;
     Particles       :TParticleEffectMotor;
 
     Character       :TCharacter;
@@ -52,14 +53,13 @@ begin
   SettingsFile := '..\..\..\GameSettings.json';
   MapFile      := '..\..\..\map.txt';
   KeyState     := TKeys.NOKEY;
-  LoadGame();
+
 end;
 
 class function TGame.GetInstance: TGame;
 begin
   if not assigned(FInstance) then
-    FInstance := TGame.Create;
-
+      FInstance := TGame.Create;
   result := FInstance;
 end;
 
@@ -82,9 +82,11 @@ begin
   if Assigned(ScreenBuffer) then ScreenBuffer.Free;
   if Assigned(GameObjects)  then GameObjects.Free;
   if Assigned(Particles)    then Particles.Free;
+
   ScreenBuffer := TScreenBuffer.Create(Ysize, XSize);
   GameObjects  := TBuffer<TGameObject>.Create(YSize, XSize);
   Particles    := TParticleEffectMotor.Create;
+
 
   //settings and theme
   if not Assigned(GameSettings) then
@@ -106,6 +108,9 @@ begin
     TGameObject.GameObjects := GameObjects;
     TGameObject.Particles   := Particles;
   end;
+
+  if Assigned(Bombs) then Bombs.Free;
+  Bombs := TBombs.Create();
 
   // Load Objects
   for y := 0 to ysize-1 do
@@ -152,6 +157,7 @@ procedure TGame.UpdateLogic();
 begin
   if KeyState = TKeys.NOKEY then Exit;
   Character.Update(KeyState);
+  Bombs.Update;
 end;
 
 procedure TGame.LoadObject(x, y :Integer);
