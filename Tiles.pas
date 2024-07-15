@@ -40,6 +40,10 @@ type
       Sprite: char;
   end;
 
+  TPowerUp = class(TTile)
+    class var
+      Sprite: char;
+  end;
 
 implementation
 
@@ -63,6 +67,8 @@ begin
   inherited create(x, y);
   s := 'i';
 end;
+
+
 
 
 

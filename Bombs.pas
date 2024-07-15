@@ -18,22 +18,23 @@ type
       class var ExplosionSprite :Char;
 
   end;
-
   TBombs = class(TObject)
     MaxCount  :Integer;
     private
       Bombs   :TList<TBomb>;
+      Range   :Integer;
+      Timer   :Integer;
     public
       constructor Create();
       procedure Add(x, y :Integer);
       procedure Update();
+      function  Count(): Integer;
   end;
 
 implementation
 
 uses
   Tiles, Character, Game, system.json;
-
 
 { TBomb }
 constructor TBomb.Create(aX, aY, aTimer, aDamage, aRange, aDrill: Integer);
@@ -53,7 +54,6 @@ begin
   for I := 1 to Range do if not TryToHit(PosX - I, PosY) then break;
   for I := 1 to Range do if not TryToHit(PosX + I, PosY) then break;
 
-//  Destroy();
 end;
 
 function TBomb.TryToHit(x, y :Integer): Boolean;
@@ -79,6 +79,7 @@ begin
   else if obj is TCharacter then
   begin
     (obj as TCharacter).Die;
+    Particles.Add(x, y, ExplosionSprite);
     GameObjects[y, x] := TEmpty.GetInstance;
     Result := False;
   end;
@@ -93,33 +94,46 @@ end;
 { TBombs }
 constructor TBombs.Create();
 begin
-//  destructo for Bomb in Bombs do Bomb.free
+
   Bombs    := TList<TBomb>.create;
   MaxCount := TGame.GetInstance.GameSettings.GetValue<TJSONObject>('BombSettings')
                                             .GetValue<Integer>('MaxCount');
+  Range    := TGame.GetInstance.GameSettings.GetValue<TJSONObject>('BombSettings')
+                                            .GetValue<Integer>('FireRange');
+  Timer    := TGame.GetInstance.GameSettings.GetValue<TJSONObject>('BombSettings')
+                                            .GetValue<Integer>('Timer');
 end;
 
 
 procedure TBombs.Add(x: Integer; y: Integer);
 begin
   if Bombs.Count >= MaxCount then Exit;
-  Bombs.Add(TBomb.Create(x, y, 3, 3, 4, 1));
+  Bombs.Add(TBomb.Create(x, y, Timer, 1, Range, 1));
 end;
 
 procedure TBombs.Update();
 var
   Bomb :TBomb;
+  Exploded :TList<TBomb>;
 begin
+  Exploded := TList<TBomb>.create;
   for Bomb in Bombs do
   begin
     Bomb.Particles.Add(Bomb.PosX, Bomb.PosY, Bomb.BombSprite);
     Bomb.Timer   := Bomb.Timer - 1;
     if Bomb.Timer <= 0 then begin
       Bomb.explode();
-      Bombs.Remove(Bomb);
+      Exploded.Add(Bomb);
     end;
   end;
+  for Bomb in Exploded do
+    Bombs.Remove(Bomb);
+  Exploded.Free;
 end;
 
+function TBombs.Count(): Integer;
+begin
+  Result := Bombs.Count;
+end;
 
 end.

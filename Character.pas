@@ -14,7 +14,7 @@ type
 
     constructor Create(PosX, PosY, Health, Speed :Integer); overload;
     function    IsMovable(x, y :Integer): boolean;
-    procedure   Move(Direction :TDirection); overload;
+    function    Move(Direction :TDirection): Integer; overload;
     function    RayCast(Direction :TDirection; Speed :Integer): Integer;
     procedure   GetHit(Damage :Integer);
     procedure   Die();
@@ -23,6 +23,8 @@ type
   TCharacter = class(TAgent)
   public
     constructor Create(PosX, PosY, Health :Integer; Speed :Integer = 1);
+    procedure Die();
+    procedure Move(Direction :TDirection); overload;
     procedure Update(KeyState: TKeys);
     procedure DropBomb();
 //    procedure ThrowBomb();
@@ -61,7 +63,8 @@ begin
   if (x < 0) or (x > Screen.ColumnCount-1)
   or (y < 0) or (Y > Screen.RowCount) then Exit;
 
-  Target := GameObjects[y, x];
+  Target := TGame.GetInstance.GameObjects[y, x];
+
   if (Target is TWall) or (Target is TSand) then
   begin
    Exit;
@@ -69,16 +72,19 @@ begin
   Result := True;
 end;
 
-procedure  TAgent.Move(Direction :TDirection);
+function  TAgent.Move(Direction :TDirection): Integer;
 var
   Movable   :Boolean;
   Distance  :Integer;
 begin
   MoveTo(PosX, PosY);
   Distance := RayCast(Direction, Speed);
+  Result := Distance;
   if Distance = 0 then Exit;
 
-  // MOVETO icine al
+  // Noooo
+
+  // MOVE TO MoveTo :)
   case Direction of
     TDirection.UP:    GameObjects.SwitchElements(PosY - Distance, PosX, PosY, PosX);
     TDirection.DOWN:  GameObjects.SwitchElements(PosY + Distance, PosX, PosY, PosX);
@@ -93,11 +99,10 @@ begin
     TDirection.RIGHT: MoveTo(PosX + Distance, PosY);
   end;
 
-  GetHit(1);
 end;
 
 function TAgent.RayCast(Direction :TDirection; Speed :Integer): Integer;
-var 
+var
  Movable  :Boolean;
  i, counter        :Integer;
 begin
@@ -112,20 +117,30 @@ begin
       TDirection.LEFT  : Movable := IsMovable(PosX - i, PosY);
     end;
     counter := counter + 1;
-    if not Movable then 
+    if not Movable then
     begin
-      Result := i - 1; 
-      Exit;  
+      Result := i - 1;
+      Exit;
     end;
   end;
   Result := Speed;
 end;
 
-
 { TCharacter }
 constructor TCharacter.Create(PosX, PosY, Health :Integer; Speed :Integer = 1);
 begin
   inherited Create(PosX, PosY, Health, Speed);
+end;
+
+procedure TCharacter.Die();
+begin
+  TGame.GetInstance.State := TGameState.LOSE;
+//  inherited Die();
+end;
+
+procedure TCharacter.Move(Direction :TDirection);
+begin
+  if inherited Move(Direction) > 0 then GetHit(1);
 end;
 
 procedure TCharacter.Update(KeyState: TKeys);
@@ -137,11 +152,17 @@ begin
     TKeys.RIGHTKEY  :Move(TDirection.RIGHT);
     TKeys.BOMBKEY	  :DropBomb();
   end;
+
+  if (PosX = TGame.GetInstance.ExitX) and (PosY = TGame.GetInstance.ExitY) then
+  TGame.GetInstance.State := TGameState.NEXTMAP
+
+  else if Health <= 0 then Die();
 end;
 
 procedure TCharacter.DropBomb();
 begin
   TGame.GetInstance.Bombs.Add(PosX, PosY);
 end;
+
 
 end.

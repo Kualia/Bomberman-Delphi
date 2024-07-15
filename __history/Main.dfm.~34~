@@ -1,0 +1,35 @@
+object MainForm: TMainForm
+  Left = 409
+  Top = 208
+  Caption = 'Form4'
+  ClientHeight = 584
+  ClientWidth = 840
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poDesigned
+  OnCreate = FormCreate
+  OnKeyDown = KeyDown
+  TextHeight = 15
+  object Screen: TMemo
+    AlignWithMargins = True
+    Left = 0
+    Top = 0
+    Width = 832
+    Height = 529
+    EditMargins.Auto = True
+    Enabled = False
+    Font.Charset = TURKISH_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Cascadia Mono'
+    Font.Style = []
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 0
+    OnKeyDown = KeyDown
+  end
+end

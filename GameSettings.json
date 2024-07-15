@@ -1,10 +1,11 @@
 {
-    "CharacterHealth": 200,
+    "CharacterHealth": 50,
     "BombSettings": {
         "MaxCount": 2,
-        "Timer": 2,
-        "FireRange": 3
+        "Timer": 6,
+        "FireRange": 2
     },
+
     "Theme": {
         "Wall":  "#",
         "Empty": " ",
@@ -13,7 +14,8 @@
         "Bomb":  "@",
         "Fire":  "X",
         "Exit":  "%",
-        "Enemy": "E"
+        "Enemy": "E",
+        "PowerUp": "+"
     }
 }
 
