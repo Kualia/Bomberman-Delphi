@@ -77,6 +77,7 @@ begin
   KeyState     := TKeys.NOKEY;
   Screen       := aScreen;
   State        := TGameState.WELCOME;
+
   LoadGameTheme();
   Update(0);
 end;
@@ -268,6 +269,7 @@ begin
   TCharacter.Sprite     := Theme.GetValue<char>('Hero');
   TBomb.BombSprite      := Theme.GetValue<char>('Bomb');
   TBomb.ExplosionSprite := Theme.GetValue<char>('Fire');
+  TPowerUp.Sprite       := Theme.GetValue<char>('PowerUp');
 end;
 
 procedure TGame.SetState(State :TGameState);

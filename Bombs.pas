@@ -67,20 +67,22 @@ begin
   if obj is TSand then
   begin
     Particles.Add(x, y, ExplosionSprite);
-    obj.Free();
+    (obj as TSand).Free();
     GameObjects[y, x] := TEmpty.GetInstance;
     Result := False;
   end
-  //Hit Character
+  //Hit Wall
   else if obj is TWall then
   begin
     Result := False;
   end
+  //Hit Character
   else if obj is TCharacter then
   begin
     (obj as TCharacter).Die;
     Particles.Add(x, y, ExplosionSprite);
-    GameObjects[y, x] := TEmpty.GetInstance;
+    obj := Tempty.GetInstance;
+    GameObjects[y, x] := obj;
     Result := False;
   end;
 

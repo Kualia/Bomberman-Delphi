@@ -20,17 +20,16 @@ type
       Class var
         FInstance :TEmpty;
         Sprite    :char;
+        PowerUpRate :Integer;
   end;
 
   TWall  = class(TTile)
-    s : char;
-    public
-    constructor create(x, y :Integer);
-    Class var
+     Class var
       Sprite: char;
   end;
 
   TSand  = class(TTile)
+  public
     Class var
       Sprite: char;
   end;
@@ -61,15 +60,5 @@ begin
 
   result := FInstance;
 end;
-
-constructor TWall.Create(x, y :Integer);
-begin
-  inherited create(x, y);
-  s := 'i';
-end;
-
-
-
-
 
 end.
