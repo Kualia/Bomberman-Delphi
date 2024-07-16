@@ -11,6 +11,8 @@ type
   public
     Health    :Integer;
     Speed     :Integer;
+    LastTouched    : TGameObject;
+
 
     constructor Create(PosX, PosY, Health, Speed :Integer); overload;
     function    IsMovable(x, y :Integer): boolean;
@@ -21,9 +23,18 @@ type
   end;
 
   TCharacter = class(TAgent)
+  private
+    FPowerUp       : TPowerups;
   public
+    PowerUpTimer   : Integer;
+    procedure SetPowerUp(PowerUp :TPowerups);
+    function  GetPowerUp() :TPowerUps;
+
+    property  PowerUp :TPowerUps read GetPowerUp write SetPowerUp;
+
     constructor Create(PosX, PosY, Health :Integer; Speed :Integer = 1);
     procedure Die();
+    procedure GetHit(Damage :Integer);
     procedure Move(Direction :TDirection); overload;
     procedure Update(KeyState: TKeys);
     procedure DropBomb();
@@ -76,29 +87,28 @@ function  TAgent.Move(Direction :TDirection): Integer;
 var
   Movable   :Boolean;
   Distance  :Integer;
+  NewPosX,
+  NewPosY   :Integer;
 begin
-  MoveTo(PosX, PosY);
   Distance := RayCast(Direction, Speed);
   Result := Distance;
   if Distance = 0 then Exit;
 
-  // Noooo
-
   // MOVE TO MoveTo :)
+  NewPosY := PosY;
+  NewPosX := PosX;
   case Direction of
-    TDirection.UP:    GameObjects.SwitchElements(PosY - Distance, PosX, PosY, PosX);
-    TDirection.DOWN:  GameObjects.SwitchElements(PosY + Distance, PosX, PosY, PosX);
-    TDirection.LEFT:  GameObjects.SwitchElements(PosY, PosX - Distance, PosY, PosX);
-    TDirection.RIGHT: GameObjects.SwitchElements(PosY, PosX + Distance, PosY, PosX);
+    TDirection.UP:    NewPosY := PosY - Distance;
+    TDirection.DOWN:  NewPosY := PosY + Distance;
+    TDirection.LEFT:  NewPosX := PosX - Distance;
+    TDirection.RIGHT: NewPosX := PosX + Distance;
   end;
 
-  case Direction of
-    TDirection.UP:    MoveTo(PosX, PosY - Distance);
-    TDirection.DOWN:  MoveTo(PosX, PosY + Distance);
-    TDirection.LEFT:  MoveTo(PosX - Distance, PosY);
-    TDirection.RIGHT: MoveTo(PosX + Distance, PosY);
-  end;
 
+  LastTouched := GameObjects[NewPosY, NewPosX];
+  LastTouched.MoveTo(PosX, PosY);
+  GameObjects.SwitchElements(NewPosY, NewPosX, PosY, PosX);
+  MoveTo(NewPosX, NewPosY);
 end;
 
 function TAgent.RayCast(Direction :TDirection; Speed :Integer): Integer;
@@ -130,20 +140,33 @@ end;
 constructor TCharacter.Create(PosX, PosY, Health :Integer; Speed :Integer = 1);
 begin
   inherited Create(PosX, PosY, Health, Speed);
+  PowerUp := TPowerups.NONE;
 end;
 
 procedure TCharacter.Die();
 begin
+  if PowerUp = TPowerups.SHIELD then exit;
   TGame.GetInstance.State := TGameState.LOSE;
 //  inherited Die();
 end;
 
+procedure TCharacter.GetHit(Damage :Integer);
+begin
+  if PowerUp = TPowerups.SHIELD then Exit;
+  inherited GetHit(Damage);
+end;
+
 procedure TCharacter.Move(Direction :TDirection);
 begin
+  if PowerUp = TPowerups.RUN then Self.Speed := 2
+  else if PowerUp = TPowerups.SKATEBOARD then Self.Speed := 50;
   if inherited Move(Direction) > 0 then GetHit(1);
+  Self.Speed := 1;
 end;
 
 procedure TCharacter.Update(KeyState: TKeys);
+var
+ r :Integer;
 begin
   case KeyState of
     TKeys.UPKEY     :Move(TDirection.UP);
@@ -153,9 +176,25 @@ begin
     TKeys.BOMBKEY	  :DropBomb();
   end;
 
-  if (PosX = TGame.GetInstance.ExitX) and (PosY = TGame.GetInstance.ExitY) then
-  TGame.GetInstance.State := TGameState.NEXTMAP
+  if PowerUp <> None then begin
+    PowerUpTimer := PowerUpTimer - 1;
+    if PowerUpTimer <= 0 then
+      FPowerUp := TPowerups.NONE;
+  end;
 
+  if LastTouched is TPowerUp then begin
+    TGame.GetInstance
+     .GameObjects[LastTouched.PosY, LastTouched.PosX] := TEmpty.GetInstance;
+    LastTouched.Free;
+    LastTouched := TEmpty.GetInstance;
+
+    r := Random(5)+1;
+    ShowMessage(r.ToString);
+    PowerUp := TPowerups(r);
+
+  end
+  else if LastTouched is TExit then
+    TGame.GetInstance.State := TGameState.NEXTMAP
   else if Health <= 0 then Die();
 end;
 
@@ -164,5 +203,16 @@ begin
   TGame.GetInstance.Bombs.Add(PosX, PosY);
 end;
 
+procedure TCharacter.SetPowerUp(PowerUp :TPowerUps);
+begin
+  FPowerUp := PowerUp;
+  if PowerUp = TPowerups.NONE then PowerUpTimer := 0
+  else PowerUpTimer := TPowerUp.PowerUpTimer;
+end;
+
+function TCharacter.GetPowerUp: TPowerups;
+begin
+  Result := FPowerUp;
+end;
 
 end.

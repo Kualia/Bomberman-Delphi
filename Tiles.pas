@@ -42,6 +42,8 @@ type
   TPowerUp = class(TTile)
     class var
       Sprite: char;
+    class var PowerUpRate  :Integer;
+    class var PowerUpTimer :Integer;
   end;
 
 implementation

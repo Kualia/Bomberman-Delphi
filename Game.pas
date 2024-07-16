@@ -72,11 +72,14 @@ constructor TGame.Create(aScreen :TStrings);
 begin
   inherited create;
   SettingsFile := '..\..\..\GameSettings.json';
+  GameSettings  := TJSONObject.ParseJSONValue(ReadFromFile(SettingsFile)) as TJSONObject;
   MapCount     := 2;
   CurrentLevel := 1;
   KeyState     := TKeys.NOKEY;
   Screen       := aScreen;
   State        := TGameState.WELCOME;
+  TPowerUp.PowerUpRate  := GameSettings.GetValue<Integer>('PowerUpRate');
+  TPowerUp.PowerUpTimer := GameSettings.GetValue<Integer>('PowerUpTimer');
 
   LoadGameTheme();
   Update(0);
@@ -249,9 +252,10 @@ begin
   else if cName = 'TEmpty'     then Result := (GameObject as TEmpty).Sprite
   else if cName = 'TCharacter' then Result := (GameObject as TCharacter).Sprite
   else if cName = 'TExit'      then Result := (GameObject as TExit).Sprite
+  else if cName = 'TPowerUp'   then Result := (GameObject as TPowerUp).Sprite
   // enemy
   else begin
-    ShowMessage('GetSpriteOf failed cName is: ' + cName);
+    ShowMessage('GetSpriteOf failed cName is: ' + cName + '<<<<');
     raise Exception.Create('Unknown object type');
   end;
 end;
@@ -259,9 +263,7 @@ end;
 
 procedure TGame.LoadGameTheme();
 begin
-  GameSettings  := TJSONObject.ParseJSONValue(ReadFromFile(SettingsFile)) as TJSONObject;
   Theme         := GameSettings.GetValue<TJSONObject>('Theme');
-
   TWall.Sprite          := Theme.GetValue<char>('Wall');
   TSand.Sprite          := Theme.GetValue<char>('Sand');
   TExit.Sprite          := Theme.GetValue<char>('Exit');
@@ -336,6 +338,7 @@ procedure TGame.DrawGame();
 var
   x, y    :Integer;
   obj     :TGameObject;
+  PowerUp :String;
 begin
   Screen.Clear;
   for y := 0 to ScreenBuffer.RowCount - 1 do
@@ -350,7 +353,21 @@ begin
   Screen.Add(FORMAT('Moves: %d/%s ', [Character.Health,
     GameSettings.GetValue<string>('CharacterHealth')]));
   Screen.Add(FORMAT('Bombs: %d/%d ', [Bombs.Count, Bombs.MaxCount]));
+
+  
+
+  if      Character.PowerUp = TPowerups.RUN         then PowerUp := 'Run'
+  else if Character.PowerUp = TPowerups.SKATEBOARD  then PowerUp := 'SkateBoard'
+  else if Character.PowerUp = TPowerups.NONE        then PowerUp := 'None'
+  else if Character.PowerUp = TPowerups.POWERFIST   then PowerUp := 'POWERFIST'
+  else if Character.PowerUp = TPowerups.MULTIBOMB   then PowerUp := 'MULTIBOMB'
+  else if Character.PowerUp = TPowerups.SHIELD      then PowerUp := 'Shield';
+
+
+  Screen.Add(FORMAT('PowerUp: %s Steps: %d ', [PowerUp,  Character.PowerUpTimer]));
+
 end;
+
 
 
 end.

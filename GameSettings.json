@@ -1,10 +1,12 @@
 {
-    "CharacterHealth": 50,
+    "CharacterHealth": 200,
     "BombSettings": {
         "MaxCount": 2,
         "Timer": 6,
         "FireRange": 2
     },
+    "PowerUpRate": 80,
+    "PowerUpTimer": 20,
 
     "Theme": {
         "Wall":  "#",

@@ -34,7 +34,7 @@ type
 implementation
 
 uses
-  Tiles, Character, Game, system.json;
+  Tiles, Character, Game, system.json, system.SysUtils, Enums;
 
 { TBomb }
 constructor TBomb.Create(aX, aY, aTimer, aDamage, aRange, aDrill: Integer);
@@ -68,7 +68,11 @@ begin
   begin
     Particles.Add(x, y, ExplosionSprite);
     (obj as TSand).Free();
-    GameObjects[y, x] := TEmpty.GetInstance;
+
+    if Random(101) < TPowerUp.PowerUpRate then
+         obj := TPowerUp.Create(x, y)
+    else obj := Tempty.GetInstance;
+    GameObjects[y, x] := obj;
     Result := False;
   end
   //Hit Wall
@@ -81,8 +85,7 @@ begin
   begin
     (obj as TCharacter).Die;
     Particles.Add(x, y, ExplosionSprite);
-    obj := Tempty.GetInstance;
-    GameObjects[y, x] := obj;
+    GameObjects[y, x] := TEmpty.GetInstance;
     Result := False;
   end;
 
@@ -109,7 +112,8 @@ end;
 
 procedure TBombs.Add(x: Integer; y: Integer);
 begin
-  if Bombs.Count >= MaxCount then Exit;
+  if (Bombs.Count >= MaxCount)
+  and (TGame.GetInstance.Character.PowerUp <> TPowerups.MULTIBOMB) then Exit;
   Bombs.Add(TBomb.Create(x, y, Timer, 1, Range, 1));
 end;
 
