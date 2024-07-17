@@ -4,7 +4,7 @@ interface
 
 uses
   Screen, Character, Tiles, GameObject, Helpers, Enums, Bomb, Bombs, ParticleEffects,
-  TypInfo, System.Variants, System.Rtti,
+  Monster, TypInfo, System.Variants, System.Rtti,
   System.JSON, System.Generics.Collections, System.Classes, System.SysUtils,
   Vcl.Dialogs;
 
@@ -25,13 +25,12 @@ type
     Screen          :TStrings;
     ScreenBuffer    :TScreenBuffer;
     Bombs           :TBombs;
+    Monsters        :TList<TMonster>;
     Particles       :TParticleEffectMotor;
-
 
     KeyState        :TKeys;
     IsUpdated       :Boolean;
     PowerUp         :TPowerups;
-
 
     MapCount        :Integer;
     CurrentLevel    :Integer;
@@ -112,6 +111,7 @@ begin
   StringList    := TStringList.Create;
   LoadStringListFromFile(MapFile, StringList);
 
+
   YSize         := StringList.Count;
   XSize         := StringList[0].Length;
 
@@ -119,11 +119,14 @@ begin
   if Assigned(GameObjects)  then GameObjects.Free;
   if Assigned(Particles)    then Particles.Free;
   if Assigned(Bombs)        then Bombs.Free;
+  if Assigned(Monsters)      then Monsters.Free;
+
 
   ScreenBuffer := TScreenBuffer.Create(Ysize, XSize);
   GameObjects  := TBuffer<TGameObject>.Create(YSize, XSize);
   Particles    := TParticleEffectMotor.Create;
   Bombs        := TBombs.Create();
+  Monsters     := TList<TMonster>.create;
 
   //Set GameObject Properties
   TGameObject.Screen      := ScreenBuffer;
@@ -210,9 +213,13 @@ begin
 end;
 
 procedure TGame.UpdateLogic();
+var
+  Monster :TMonster;
 begin
   Character.Update(KeyState);
   Bombs.Update;
+  for Monster in Monsters do
+    Monster.Update();
 //  Monsters.Update;
 end;
 
@@ -225,7 +232,9 @@ begin
        if c = Theme.GetValue<char>('Empty')     then obj := TEmpty.GetInstance
   else if c = Theme.GetValue<char>('Wall')      then obj := TWall.Create(x,y)
   else if c = Theme.GetValue<char>('Sand')      then obj := TSand.Create(x,y)
-  else if c = Theme.GetValue<char>('Exit')      then begin
+  else if c = Theme.GetValue<char>('Enemy') then begin obj := TMonster.Create(x,y);
+                                                 Monsters.Add((obj as TMonster)) end
+  else if c = Theme.GetValue<char>('Exit')  then begin
    obj := TExit.Create(x,y);
    ExitX := x;
    ExitY := y;
@@ -253,7 +262,7 @@ begin
   else if cName = 'TCharacter' then Result := (GameObject as TCharacter).Sprite
   else if cName = 'TExit'      then Result := (GameObject as TExit).Sprite
   else if cName = 'TPowerUp'   then Result := (GameObject as TPowerUp).Sprite
-  // enemy
+  else if cName = 'TMonster'   then Result := (GameObject as TMonster).Sprite
   else begin
     ShowMessage('GetSpriteOf failed cName is: ' + cName + '<<<<');
     raise Exception.Create('Unknown object type');
@@ -263,11 +272,12 @@ end;
 
 procedure TGame.LoadGameTheme();
 begin
-  Theme         := GameSettings.GetValue<TJSONObject>('Theme');
+  Theme                 := GameSettings.GetValue<TJSONObject>('Theme');
   TWall.Sprite          := Theme.GetValue<char>('Wall');
   TSand.Sprite          := Theme.GetValue<char>('Sand');
   TExit.Sprite          := Theme.GetValue<char>('Exit');
   TEmpty.Sprite	        := Theme.GetValue<char>('Empty');
+  TMonster.Sprite       := Theme.GetValue<char>('Enemy');
   TCharacter.Sprite     := Theme.GetValue<char>('Hero');
   TBomb.BombSprite      := Theme.GetValue<char>('Bomb');
   TBomb.ExplosionSprite := Theme.GetValue<char>('Fire');
@@ -284,7 +294,6 @@ function TGame.GetState(): TGameState;
 begin
   Result := FState;
 end;
-
 
 procedure TGame.DrawWelcomeScreen();
 begin
@@ -354,8 +363,6 @@ begin
     GameSettings.GetValue<string>('CharacterHealth')]));
   Screen.Add(FORMAT('Bombs: %d/%d ', [Bombs.Count, Bombs.MaxCount]));
 
-  
-
   if      Character.PowerUp = TPowerups.RUN         then PowerUp := 'Run'
   else if Character.PowerUp = TPowerups.SKATEBOARD  then PowerUp := 'SkateBoard'
   else if Character.PowerUp = TPowerups.NONE        then PowerUp := 'None'
@@ -363,11 +370,7 @@ begin
   else if Character.PowerUp = TPowerups.MULTIBOMB   then PowerUp := 'MULTIBOMB'
   else if Character.PowerUp = TPowerups.SHIELD      then PowerUp := 'Shield';
 
-
   Screen.Add(FORMAT('PowerUp: %s Steps: %d ', [PowerUp,  Character.PowerUpTimer]));
-
 end;
-
-
 
 end.

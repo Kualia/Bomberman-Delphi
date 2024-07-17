@@ -2,10 +2,11 @@ unit Helpers;
 
 interface
  uses
-  System.SysUtils, System.Classes;
+  System.SysUtils, System.Classes, Generics.Collections;
 
 function  ReadFromFile(const FileName: string): String;
 procedure LoadStringListFromFile(const FileName: string; var StringList: TStringList);
+function PopRandomFromList(aList :TList): TObject;
 
 implementation
 
@@ -35,6 +36,16 @@ begin
 
   FileStream.free;
 end;
+
+function PopRandomFromList(aList :TList): TObject;
+begin
+
+  if aList.Count <= 0 then
+    raise Exception.Create('PopRandomFromList aList.Count is <1');
+
+    Result := aList[Random(aList.Count)];
+end;
+
 
 procedure StrToCharArray(const str: string; var arr: array of char);
 var

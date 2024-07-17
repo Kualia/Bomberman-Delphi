@@ -34,7 +34,7 @@ type
 implementation
 
 uses
-  Tiles, Character, Game, system.json, system.SysUtils, Enums;
+  Tiles, Character, Monster, Game, system.json, system.SysUtils, Enums;
 
 { TBomb }
 constructor TBomb.Create(aX, aY, aTimer, aDamage, aRange, aDrill: Integer);
@@ -83,11 +83,17 @@ begin
   //Hit Character
   else if obj is TCharacter then
   begin
-    (obj as TCharacter).Die;
+    if not (obj as TCharacter).Die then Exit;
     Particles.Add(x, y, ExplosionSprite);
     GameObjects[y, x] := TEmpty.GetInstance;
     Result := False;
+  end
+  //Hit Monster
+  else if obj is TMonster then
+  begin
+    (obj as TMonster).Die();
   end;
+
 
   if Result then
   begin

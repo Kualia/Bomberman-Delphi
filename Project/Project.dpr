@@ -13,7 +13,9 @@ uses
   Enums in '..\Enums.pas',
   Bomb in '..\Bomb.pas',
   ParticleEffects in '..\ParticleEffects.pas',
-  Bombs in '..\Bombs.pas';
+  Bombs in '..\Bombs.pas',
+  Agent in '..\Agent.pas',
+  Monster in '..\Monster.pas';
 
 {$R *.res}
 
